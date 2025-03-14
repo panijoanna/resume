@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body className={`${montserrat.className}`}>
-        <div className="mainContainer">
+        <div style={{ display: "flex" }}>
           <Sidebar />
           <div>{children}</div>
         </div>

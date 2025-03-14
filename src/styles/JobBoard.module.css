@@ -1,0 +1,56 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 50px 50px 0 50px;
+  height: 100vh;
+}
+
+.container {
+  height: 10%;
+}
+
+.labelContainer {
+  height: 80%;
+}
+
+.heading {
+  color: #0e0d0d;
+  font-weight: 700;
+  font-size: 18px;
+  padding-bottom: 20px;
+  margin: 0;
+  border-bottom: 1px solid #ececec;
+}
+
+.list {
+  display: flex;
+  gap: 20px;
+  color: #6c6c7f;
+  list-style: none;
+  padding: 0;
+}
+
+.listItem {
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-weight: 100;
+}
+
+.listItem:hover {
+  color: #247aff;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.statusContainer {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  height: 10%;
+}
+
+.text {
+  color: #6c6c7f;
+}
