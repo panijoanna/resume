@@ -2,7 +2,6 @@
 import styles from "../styles/JobBoard.module.css";
 import StatusBadge from "./StatusBadge";
 import { Button } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
 
 const JobBoard = () => {
   return (
@@ -17,12 +16,7 @@ const JobBoard = () => {
             <li className={styles.listItem}>oczekujące aplikacje</li>
           </ul>
           <div className={styles.buttonContainer}>
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              endIcon={<AddIcon fontSize="small" />}
-            >
+            <Button size="small" variant="contained" color="primary">
               Utwórz etykietę
             </Button>
           </div>
