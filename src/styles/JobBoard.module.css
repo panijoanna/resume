@@ -7,10 +7,21 @@
 
 .container {
   height: 10%;
+  width: 100%;
+}
+
+.itemContainer {
+  display: flex;
+  gap: 10px;
 }
 
 .labelContainer {
   height: 80%;
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
 }
 
 .heading {
