@@ -12,7 +12,7 @@ const Sidebar = () => {
         <div className={styles.navItem}>
           <Link href="/infoboard" className={styles.navLink}>
             <Icon icon="radix-icons:dashboard" className={styles.navIcon} />
-            Tablica
+            Dashboard
           </Link>
         </div>
       </nav>
