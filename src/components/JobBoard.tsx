@@ -1,7 +1,7 @@
 "use client";
 import styles from "../styles/JobBoard.module.css";
+import CardFormModal from "./CardFormModal";
 import StatusBadge from "./StatusBadge";
-import { Button } from "@mui/material";
 
 const JobBoard = () => {
   return (
@@ -16,13 +16,13 @@ const JobBoard = () => {
             <li className={styles.listItem}>oczekujące aplikacje</li>
           </ul>
           <div className={styles.buttonContainer}>
-            <Button size="small" variant="contained" color="primary">
-              Utwórz etykietę
-            </Button>
+           <CardFormModal/>
           </div>
         </div>
       </div>
-      <div className={styles.labelContainer}></div>
+      <div className={styles.labelContainer}>
+  
+      </div>
       <div className={styles.statusContainer}>
         <StatusBadge color="green" />
         <span className={styles.text}>w trakcie rekrutacji</span>
