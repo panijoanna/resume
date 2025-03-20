@@ -1,6 +1,7 @@
 "use client";
 import { Box, Typography, ListItem, List } from "@mui/material";
 import CardFormModal from "./CardFormModal";
+import JobCard from "./JobCard";
 
 const JobBoard = () => {
   const selectedOption = [
@@ -23,10 +24,7 @@ const JobBoard = () => {
         </Typography>
         <Box className="flex gap-2">
           {selectedOption.map((option, index) => (
-            <List
-              key={index}
-              className="flex gap-5 text-[#6c6c7f] list-none"
-            >
+            <List key={index} className="flex gap-5 text-[#6c6c7f] list-none">
               <ListItem className="cursor-pointer !pl-0 transition duration-300 ease-in-out font-light hover:text-[#247aff]">
                 {option}
               </ListItem>
@@ -37,7 +35,10 @@ const JobBoard = () => {
           </Box>
         </Box>
       </Box>
-      <Box className="h-4/5"></Box>
+      <Box className="h-4/5 mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        </div>
+      </Box>
     </Box>
   );
 };
