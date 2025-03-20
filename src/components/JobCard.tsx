@@ -18,18 +18,21 @@ const JobCard = () => {
       <div className="p-3">
         <div className="flex justify-between items-start mb-2">
           <h2 className="font-bold">Frontend Developer</h2>
-          <div className="flex gap-1 flex-shrink-0">
-            <div className="text-xs text-blue-500 normal-case p-0 min-w-0 cursor-pointer">
+          <div className="flex gap-2 flex-shrink-0">
+            <button className="text-xs text-blue-500 normal-case p-0 min-w-0 cursor-pointer hover:text-blue-300 transition-colors duration-300">
               Edit
-            </div>
-            <div className="text-xs text-red-500 cursor-pointer">Delete</div>
+            </button>
+            <button className="text-xs text-red-500 cursor-pointer  hover:text-red-300 transition-colors duration-300">
+              Delete
+            </button>
           </div>
         </div>
         <p className="text-sm mb-2">Google Inc.</p>
         <p className="text-xs text-gray-500 mb-1">Warsaw</p>
         <button
           onClick={toggleCard}
-          className="text-xs mt-2 pb-4 text-blue-500 underline cursor-pointer"
+          className="text-xs mt-2 pb-4 text-blue-500 underline cursor-pointer 
+            hover:text-blue-400 transition-colors duration-300"
         >
           {isCardOpen ? "Hide details" : "Show details"}
         </button>
