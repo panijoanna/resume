@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl">
+    <html lang="en">
       <body className={`${montserrat.className}`}>
         <div style={{ display: "flex" }}>
           <Sidebar />

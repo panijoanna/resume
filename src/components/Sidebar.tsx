@@ -2,21 +2,22 @@
 import Link from "next/link";
 import Logo from "./Logo";
 import { Icon } from "@iconify/react";
-import styles from "../styles/Sidebar.module.css";
+import { Box, Typography } from "@mui/material";
 
 const Sidebar = () => {
   return (
-    <div className={styles.sidebarContainer}>
+    <Box className="flex flex-col justify-between items-center pt-10 bg-[#3b3b3b] w-[15%] h-screen shadow-[5px_0px_10px_0px_rgba(50,50,105,0.15)]">
       <Logo />
-      <nav className={styles.sidebarContainer}>
-        <div className={styles.navItem}>
-          <Link href="/infoboard" className={styles.navLink}>
-            <Icon icon="radix-icons:dashboard" className={styles.navIcon} />
-            Tablica
-          </Link>
-        </div>
+      <nav className="w-full flex justify-center mt-16 mb-auto">
+        <Link
+          href="/infoboard"
+          className="flex items-center text-white no-underline gap-2"
+        >
+          <Icon icon="radix-icons:dashboard" className="text-white text-xl" />
+          <Typography className="text-white">Dashboard</Typography>
+        </Link>
       </nav>
-    </div>
+    </Box>
   );
 };
 

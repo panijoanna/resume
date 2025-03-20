@@ -1,37 +1,44 @@
 "use client";
-import styles from "../styles/JobBoard.module.css";
+import { Box, Typography, ListItem, List } from "@mui/material";
 import CardFormModal from "./CardFormModal";
-import StatusBadge from "./StatusBadge";
 
 const JobBoard = () => {
+  const selectedOption = [
+    " All applications",
+    "Applied",
+    "Interview",
+    "Offer",
+    "Rejected",
+  ];
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.container}>
-        <h1 className={styles.heading}>Moja tablica</h1>
-        <div className={styles.itemContainer}>
-          <ul className={styles.list}>
-            <li className={styles.listItem}>wszystkie aplikacje</li>
-            <li className={styles.listItem}>w trakcie rekrutacji</li>
-            <li className={styles.listItem}>odrzucone aplikacje</li>
-            <li className={styles.listItem}>oczekujące aplikacje</li>
-          </ul>
-          <div className={styles.buttonContainer}>
-           <CardFormModal/>
-          </div>
-        </div>
-      </div>
-      <div className={styles.labelContainer}>
-  
-      </div>
-      <div className={styles.statusContainer}>
-        <StatusBadge color="green" />
-        <span className={styles.text}>w trakcie rekrutacji</span>
-        <StatusBadge color="orange" />
-        <span className={styles.text}>oczekujące aplikacje</span>
-        <StatusBadge color="red" />
-        <span className={styles.text}>odrzucone aplikacje</span>
-      </div>
-    </div>
+    <Box className="flex flex-col m-12 h-screen">
+      <Box className="h-1/10 w-full">
+        <Typography
+          variant="h6"
+          className="text-[#0e0d0d] pb-4 mb-0 border-b border-[#ececec]"
+          fontWeight={700}
+          fontSize={18}
+        >
+          My Job Board
+        </Typography>
+        <Box className="flex gap-2">
+          {selectedOption.map((option, index) => (
+            <List
+              key={index}
+              className="flex gap-5 text-[#6c6c7f] list-none"
+            >
+              <ListItem className="cursor-pointer !pl-0 transition duration-300 ease-in-out font-light hover:text-[#247aff]">
+                {option}
+              </ListItem>
+            </List>
+          ))}
+          <Box className="flex items-center ml-auto">
+            <CardFormModal />
+          </Box>
+        </Box>
+      </Box>
+      <Box className="h-4/5"></Box>
+    </Box>
   );
 };
 
