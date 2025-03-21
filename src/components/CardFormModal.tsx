@@ -35,7 +35,7 @@ const CardFormModal = () => {
         <DialogContent>
           <Box className="space-y-4">
             <Box className="mb-4">
-              <TextField label="Company" variant="outlined" fullWidth />
+              <TextField margin="dense" label="Company" variant="outlined" fullWidth />
             </Box>
             <Box className="mb-4">
               <TextField label="Position" variant="outlined" fullWidth />
