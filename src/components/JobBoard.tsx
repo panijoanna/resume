@@ -2,8 +2,20 @@
 import { Box, Typography, ListItem, List } from "@mui/material";
 import CardFormModal from "./CardFormModal";
 import JobCard from "./JobCard";
+import { useState } from "react";
+
+export interface JobCardData {
+  company: string;
+  position: string;
+  status: string;
+  location: string;
+  salary: number;
+  date: string;
+  notes: string;
+}
 
 const JobBoard = () => {
+  const [jobCards, setJobCards] = useState<JobCardData[]>([]);
   const selectedOption = [
     " All applications",
     "Applied",
@@ -11,6 +23,22 @@ const JobBoard = () => {
     "Offer",
     "Rejected",
   ];
+
+  const addNewJobCards = (
+    company: string,
+    position: string,
+    status: string,
+    location: string,
+    salary: number,
+    date: string,
+    notes: string
+  ) => {
+    setJobCards((prev) => [
+      ...prev,
+      { company, position, status, location, salary, date, notes },
+    ]);
+  };
+
   return (
     <Box className="flex flex-col m-12 h-screen">
       <Box className="h-1/10 w-full">
@@ -31,13 +59,24 @@ const JobBoard = () => {
             </List>
           ))}
           <Box className="flex items-center ml-auto">
-            <CardFormModal />
+            <CardFormModal addNewJobCards={addNewJobCards} />
           </Box>
         </Box>
       </Box>
       <Box className="h-4/5 mt-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          <JobCard/>
+          {jobCards.map((card, index) => (
+            <JobCard
+              key={index}
+              company={card.company}
+              position={card.position}
+              status={card.status}
+              location={card.location}
+              salary={card.salary}
+              date={card.date}
+              notes={card.notes}
+            />
+          ))}
         </div>
       </Box>
     </Box>

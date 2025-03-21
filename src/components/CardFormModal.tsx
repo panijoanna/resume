@@ -13,11 +13,50 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 
-const CardFormModal = () => {
+interface CardFormModalProps {
+  addNewJobCards: (
+    company: string,
+    position: string,
+    status: string,
+    location: string,
+    salary: number,
+    date: string,
+    notes: string
+  ) => void;
+}
+
+const CardFormModal = ({ addNewJobCards }: CardFormModalProps) => {
   const [open, setOpen] = useState(false);
+  const [company, setCompany] = useState<string>("");
+  const [position, setPosition] = useState<string>("");
+  const [status, setStatus] = useState<string>("");
+  const [location, setLocation] = useState<string>("");
+  const [salary, setSalary] = useState<number | "">("");
+  const [date, setDate] = useState<string>("");
+  const [notes, setNotes] = useState<string>("");
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const handleOnSubmit = () => {
+    addNewJobCards(
+      company,
+      position,
+      status,
+      location,
+      salary as number,
+      date,
+      notes
+    );
+    setCompany("");
+    setPosition("");
+    setStatus("");
+    setLocation("");
+    setSalary("");
+    setDate("");
+    setNotes("");
+    handleClose();
+  };
 
   return (
     <Box className="space-y-4">
@@ -35,15 +74,33 @@ const CardFormModal = () => {
         <DialogContent>
           <Box className="space-y-4">
             <Box className="mb-4">
-              <TextField margin="dense" label="Company" variant="outlined" fullWidth />
+              <TextField
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+                margin="dense"
+                label="Company"
+                variant="outlined"
+                fullWidth
+              />
             </Box>
             <Box className="mb-4">
-              <TextField label="Position" variant="outlined" fullWidth />
+              <TextField
+                value={position}
+                onChange={(e) => setPosition(e.target.value)}
+                label="Position"
+                variant="outlined"
+                fullWidth
+              />
             </Box>
             <Box className="mb-4">
               <FormControl fullWidth variant="outlined">
                 <InputLabel id="status-label">Status</InputLabel>
-                <Select labelId="status-label" label="Status">
+                <Select
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
+                  labelId="status-label"
+                  label="Status"
+                >
                   <MenuItem value="applied">Applied</MenuItem>
                   <MenuItem value="interview">Interview</MenuItem>
                   <MenuItem value="offer">Offer</MenuItem>
@@ -52,10 +109,18 @@ const CardFormModal = () => {
               </FormControl>
             </Box>
             <Box className="mb-4">
-              <TextField label="Location" variant="outlined" fullWidth />
+              <TextField
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                label="Location"
+                variant="outlined"
+                fullWidth
+              />
             </Box>
             <Box className="mb-4">
               <TextField
+                value={salary}
+                onChange={(e) => setSalary(Number(e.target.value))}
                 label="Salary"
                 type="number"
                 variant="outlined"
@@ -64,6 +129,8 @@ const CardFormModal = () => {
             </Box>
             <Box className="mb-4">
               <TextField
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
                 type="date"
                 variant="outlined"
                 fullWidth
@@ -71,6 +138,8 @@ const CardFormModal = () => {
             </Box>
             <Box className="mb-4">
               <TextField
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
                 label="Notes"
                 variant="outlined"
                 fullWidth
@@ -89,7 +158,7 @@ const CardFormModal = () => {
             Cancel
           </Button>
           <Button
-            onClick={handleClose}
+            onClick={handleOnSubmit}
             color="primary"
             className="bg-blue-500 hover:bg-blue-700 text-white"
           >
