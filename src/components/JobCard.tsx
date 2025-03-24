@@ -3,6 +3,8 @@ import { Divider } from "@mui/material";
 import { useState } from "react";
 import { JobCardData } from "./JobBoard";
 
+type JobStatus = "applied" | "interview" | "offer" | "rejected";
+
 const JobCard = ({
   company,
   position,
@@ -14,15 +16,26 @@ const JobCard = ({
 }: JobCardData) => {
   const [isCardOpen, setIsCardOpen] = useState(false);
 
+  const statusThemes: Record<JobStatus, { bg: string; bullet: string }> = {
+    applied: { bg: "bg-slate-100", bullet: "bg-blue-400" },
+    interview: { bg: "bg-yellow-100", bullet: "bg-amber-400" },
+    offer: { bg: "bg-green-100", bullet: "bg-green-400" },
+    rejected: { bg: "bg-red-100", bullet: "bg-red-400" },
+  };
+
+  const colors = statusThemes[status as JobStatus];
+
   const toggleCard = () => {
     setIsCardOpen(!isCardOpen);
   };
 
   return (
     <div className="w-72 bg-white rounded-lg shadow-md">
-      <div className="bg-[#F8FFF8] font-semibold p-3 rounded-t-lg flex items-center justify-between">
-        {status}
-        <div className="bg-[#6CD31B] w-4 h-4 rounded-full"></div>
+      <div
+        className={`${colors.bg} font-semibold p-3 rounded-t-lg flex items-center justify-between`}
+      >
+        {status[0].toUpperCase() + status.slice(1)}
+        <div className={`${colors.bullet} w-4 h-4 rounded-full`}></div>
       </div>
       <div className="p-3">
         <div className="flex justify-between items-start mb-2">
