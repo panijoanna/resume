@@ -19,15 +19,18 @@ export interface JobCardData {
   notes: string;
 }
 
+export const activeTabs = [
+  "All applications",
+  "Applied",
+  "Interview",
+  "Offer",
+  "Rejected",
+] as const;
+export type ActiveTabsTypes = (typeof activeTabs)[number];
+
 const JobBoard = () => {
   const [jobCards, setJobCards] = useState<JobCardData[]>(getJobCards);
-  const selectedOption = [
-    " All applications",
-    "Applied",
-    "Interview",
-    "Offer",
-    "Rejected",
-  ];
+  const [tabs, setTabs] = useState<ActiveTabsTypes>("All applications");
 
   const addNewJobCards = (
     company: string,
@@ -45,8 +48,8 @@ const JobBoard = () => {
   };
 
   useEffect(() => {
-    localStorage.setItem("jobCards", JSON.stringify(jobCards))
-  }, [jobCards])
+    localStorage.setItem("jobCards", JSON.stringify(jobCards));
+  }, [jobCards]);
 
   return (
     <Box className="flex flex-col m-12 h-screen">
@@ -59,11 +62,19 @@ const JobBoard = () => {
         >
           My Job Board
         </Typography>
-        <Box className="flex gap-2">
-          {selectedOption.map((option, index) => (
-            <List key={index} className="flex gap-5 text-[#6c6c7f] list-none">
-              <ListItem className="cursor-pointer !pl-0 transition duration-300 ease-in-out font-light hover:text-[#247aff]">
-                {option}
+        <Box className="flex gap-4 pb-2">
+          {activeTabs.map((tab) => (
+            <List key={tab} className="list-none">
+              <ListItem
+                className={`cursor-pointer transition duration-300 ease-in-out
+    ${
+      tabs === tab
+        ? "text-gray-800 font-medium"
+        : "text-gray-500 hover:text-[#247aff]"
+    }`}
+                onClick={() => setTabs(tab)}
+              >
+                {tab}
               </ListItem>
             </List>
           ))}
