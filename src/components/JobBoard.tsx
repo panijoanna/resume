@@ -2,7 +2,12 @@
 import { Box, Typography, ListItem, List } from "@mui/material";
 import CardFormModal from "./CardFormModal";
 import JobCard from "./JobCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const getJobCards = (): JobCardData[] => {
+  const localStorageJobCards = localStorage.getItem("jobCards");
+  return localStorageJobCards ? JSON.parse(localStorageJobCards) : [];
+};
 
 export interface JobCardData {
   company: string;
@@ -15,7 +20,7 @@ export interface JobCardData {
 }
 
 const JobBoard = () => {
-  const [jobCards, setJobCards] = useState<JobCardData[]>([]);
+  const [jobCards, setJobCards] = useState<JobCardData[]>(getJobCards);
   const selectedOption = [
     " All applications",
     "Applied",
@@ -38,6 +43,10 @@ const JobBoard = () => {
       { company, position, status, location, salary, date, notes },
     ]);
   };
+
+  useEffect(() => {
+    localStorage.setItem("jobCards", JSON.stringify(jobCards))
+  }, [jobCards])
 
   return (
     <Box className="flex flex-col m-12 h-screen">
