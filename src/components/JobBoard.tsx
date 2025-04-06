@@ -32,6 +32,11 @@ const JobBoard = () => {
   const [jobCards, setJobCards] = useState<JobCardData[]>(getJobCards);
   const [tabs, setTabs] = useState<ActiveTabsTypes>("All applications");
 
+  const filteredJobCards =
+    tabs === "All applications"
+      ? jobCards
+      : jobCards.filter((card) => card.status === tabs.toLocaleLowerCase());
+
   const addNewJobCards = (
     company: string,
     position: string,
@@ -85,7 +90,7 @@ const JobBoard = () => {
       </Box>
       <Box className="h-4/5 mt-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {jobCards.map((card, index) => (
+          {filteredJobCards.map((card, index) => (
             <JobCard
               key={index}
               company={card.company}
